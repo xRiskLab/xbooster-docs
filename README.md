@@ -1,0 +1,2 @@
+# xbooster-docs
+xBooster documentation
