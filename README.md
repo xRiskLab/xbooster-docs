@@ -6,7 +6,8 @@ Explainable Boosted Scoring (xbooster)
 ![Image](./header.png)
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-fuchsia?logo=GitHub)](https://github.com/xRiskLab/xbooster-docs) 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9e1397bb-f8f0-4ac4-88bf-8e855103606a/deploy-status)](https://app.netlify.com/sites/neon-parfait-a7dde1/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/47ff9d30-1958-413a-b7fe-ce64b25b3163/deploy-status)](https://app.netlify.com/sites/xrisklab/deploys)
+
 </div>
 
 <span style="font-family: Karma, sans-serif;">

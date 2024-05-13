@@ -6,7 +6,7 @@ Explainable Boosted Scoring (xbooster)
 ![Image](./header.png)
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-View_on_GitHub-fuchsia?logo=GitHub)](https://github.com/xRiskLab/xbooster-docs) 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9e1397bb-f8f0-4ac4-88bf-8e855103606a/deploy-status)](https://app.netlify.com/sites/neon-parfait-a7dde1/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/47ff9d30-1958-413a-b7fe-ce64b25b3163/deploy-status)](https://app.netlify.com/sites/xrisklab/deploys)
 </div>
 
 <span style="font-family: Karma, sans-serif;">
@@ -47,7 +47,7 @@ To familiarize yourself further with gradient boosting and XGBoost follow the li
 * [Around Gradient Boosting: Classification, Missing Values, Second Order Derivatives, and Line Search](https://nicolas-hug.com/blog/around_gradient_boosting)
 * [How Does Extreme Gradient Boosting (XGBoost) Work?](https://cengiz.me/posts/extreme-gradient-boosting/)
 
-## Bosted scorecards 📈
+## Bosted scorecards 💳
 
 Boosted scorecards built on top of gradient-boosted trees allow to improve performance metrics like Gini score and Kolmogorov-Smirnov (KS) statistic compared to standard tools, while maintaining the interpretability of traditional scorecards. 📊 This is achieved by combining the best of both worlds: the interpretability of scorecards and the predictive power of gradient boosting. 🌐
 
