@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Methodology &#8212; xbooster</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/static.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'methodology';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Parameters" href="parameters.html" />
+    <link rel="prev" title="1. Introduction" href="introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="README.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="xbooster - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="xbooster - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="introduction.html">
+                        Introduction
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Methodology
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="parameters.html">
+                        Parameters
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="introduction.html">
+                        Introduction
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Methodology
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="parameters.html">
+                        Parameters
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="README.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="methodology">
+<h1><span class="section-number">2. </span>Methodology<a class="headerlink" href="#methodology" title="Permalink to this heading">#</a></h1>
+<span style="font-family: Karma, sans-serif;">
+<p>In recent years, gradient boosting algorithms have revolutionized machine learning with their exceptional performance. However, understanding their inner workings and interpretability has often been challenging.</p>
+<p>The methodology for scorecard boosting, pioneered by Paul Edwards, addresses this gap. xbooster library builds upon this methodology, extending it with the inclusion of Weight of Evidence (WOE) as another method for building credit scorecards with XGBoost.</p>
+<p>The underlying framework of xbooster is likelihood-based. This framework enables to build and validate boosted scoring systems, quantify feature importance, and perform model validation effectively.</p>
+<p>Boosting iterations by XGBoost produce margins (log-odds), which can be interpreted as likelihood ratios relative to the base score. By treating these margins as likelihoods, xbooster conceptualizes the boosting process as an iterative procedure aimed at maximizing the likelihood of the observed data (Maximum Likelihood Estimation or MLE).</p>
+<details><summary class="summary-box"><b>Important terminology</b><br></summary>
+  <br>
+  <p>
+  <b>Weight of Evidence (WOE)</b>: calculates the log-odds of the event rate in a specific group relative to the event rate in the entire dataset. WOE in the context of gradient boosting is a (log) likelihood ratio that measures deviations from the average event rate in a given tree. WOE is defined as p("bad") / p("good") to match the direction of leaf weights (XAddEvidence) and WOE in this library.
+  <br>
+  </p>
+  <p>
+  <b>Information Value (IV)</b>: Shannon Information Value (IV).<br>
+  </p>
+  <p>
+  <b>Leaf weights (XAddEvidence)</b>: gradient boosting margins, which can be interpreted as likelihood ratios.<br>
+  </p>
+  <p>
+  <b>Points</b>: calculates credit scorecard points based on the XAddEvidence or WOE and the PDO (Points to Double the Odds) method.<br>
+  </p>
+  <b>Likelihood</b>: the exponent of WOE. When visualizing metrics for interpretability, we have an option to normalize to 1.<br>
+  </p>
+</details>
+</span>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="boosting-and-likelihood">
+<h1><span class="section-number">3. </span>Boosting and Likelihood<a class="headerlink" href="#boosting-and-likelihood" title="Permalink to this heading">#</a></h1>
+<section id="global-interpretability">
+<h2><span class="section-number">3.1. </span>Global Interpretability<a class="headerlink" href="#global-interpretability" title="Permalink to this heading">#</a></h2>
+<span style="font-family: Karma, sans-serif;">
+<p>We can view an ensemble of gradient boosted trees as a summation of margins, leaf log-odds which are scaled by the learning rate. Each boosting iteration produces a margin, which can be interpreted as a likelihood vis-a-vis the base score (intercept). At each iteration, the boosting machine updates its previous likelihood by fitting a new decision tree to update the previous margin. As such, the boosting ensemble produces a series of likelihoods, which are eventually summed to obtain the final prediction.</p>
+<p>It is important to note the difference between a tree depth of 1 (stump) and larger depths. We can use a <code class="docutils literal notranslate"><span class="pre">global</span></code> method from <code class="docutils literal notranslate"><span class="pre">explainer.plot_importance()</span></code> only for stumps. For larger trees, we need to recreate individual splits and measure feature importance via a likelihood ratio.</p>
+<p>What follows is a description of the approach to global feature importance for models with depth greater than one.</p>
+</span>
+<section id="interpreting-split-conditions">
+<h3><span class="section-number">3.1.1. </span>Interpreting Split Conditions<a class="headerlink" href="#interpreting-split-conditions" title="Permalink to this heading">#</a></h3>
+<span style="font-family: Karma, sans-serif;">
+<p>By examining how samples traverse through the trees and end up in specific leaf nodes, we can evaluate the impact of different feature combinations and their likelihood ratios on the model’s predictions.</p>
+<p>Consider a split in one of the gradient boosting trees:</p>
+</span>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tree</p></th>
+<th class="head"><p>Node</p></th>
+<th class="head"><p>Feature</p></th>
+<th class="head"><p>Sign</p></th>
+<th class="head"><p>Split</p></th>
+<th class="head"><p>Count</p></th>
+<th class="head"><p>CountPct</p></th>
+<th class="head"><p>NonEvents</p></th>
+<th class="head"><p>Events</p></th>
+<th class="head"><p>EventRate</p></th>
+<th class="head"><p>WOE</p></th>
+<th class="head"><p>XAddEvidence</p></th>
+<th class="head"><p>DetailedSplit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>revolving_utilization_of_unsecured_lines</p></td>
+<td><p>&lt;</p></td>
+<td><p>0.60931</p></td>
+<td><p>1901</p></td>
+<td><p>0.27157</p></td>
+<td><p>1669</p></td>
+<td><p>232</p></td>
+<td><p>0.1220</p></td>
+<td><p>0.224</p></td>
+<td><p>-0.1801</p></td>
+<td><p>account_never_delinq_percent &lt; 98, revolving_utilization_of_unsecured_lines &lt; 0.60930562</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-family: Karma, sans-serif;">
+<p>This split forms a one-way interaction table with two features. The resulting margin (“XAddEvidence”) for this specific split will be -0.1801. The event rate in this split is 12%, and approximately 27% of observations are contained in this split. Given that our base odds are 16%, this is not a very large deviation from the initial odds.</p>
+<p>To calculate the likelihood, we can use the following formula:</p>
+<ol class="arabic simple">
+<li><p>The initial odds are 0.11.</p></li>
+<li><p>The event rate in this split is 0.1220, so the odds are 0.1220 / (1 - 0.1220) = 0.1390.</p></li>
+<li><p>To get the likelihood, divide 0.1390 by the initial odds = 0.1390 / 0.11 = 1.251.</p></li>
+<li><p>If we take the natural logarithm of this value, we get 0.224, which is also a weight of evidence.</p></li>
+</ol>
+<p>In essence, the likelihood of this split indicates more evidence in favor of our event of interest (credit default). However, when looking at the results, we would probably associate it with the last feature used in the split, i.e., revolving_utilization_of_unsecured_lines &lt; 0.60931.
+</span></p>
+</section>
+<section id="likelihood-ratio">
+<h3><span class="section-number">3.1.2. </span>Likelihood Ratio<a class="headerlink" href="#likelihood-ratio" title="Permalink to this heading">#</a></h3>
+<span style="font-family: Karma, sans-serif;">
+<p>For models with depth greater than one, to measure the relative importance of each factor in a split, we can use a likelihood ratio, where one likelihood is associated with the terminal node, and another one measures the likelihood of an individual split condition within a branch.</p>
+<p><a class="reference external" href="https://github.com/xRiskLab/xBooster/blob/fc56c957975c17c42f973437cd86be331e881f7a/xbooster/explainer.py#L286">Link to the code where it is implemented</a></p>
+<p>Consider the following likelihoods from individual splits:</p>
+</span>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tree</p></th>
+<th class="head"><p>Node</p></th>
+<th class="head"><p>Feature</p></th>
+<th class="head"><p>Sign</p></th>
+<th class="head"><p>Split</p></th>
+<th class="head"><p>EventRate</p></th>
+<th class="head"><p>Odds</p></th>
+<th class="head"><p>WOE</p></th>
+<th class="head"><p>Likelihood L(θ2∣x)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>account_never_delinq_percent</p></td>
+<td><p>&lt;</p></td>
+<td><p>98.0000</p></td>
+<td><p>0.23986</p></td>
+<td><p>0.31554</p></td>
+<td><p>1.04376</p></td>
+<td><p>2.83989</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>revolving_utilization_of_unsecured_lines</p></td>
+<td><p>&lt;</p></td>
+<td><p>0.6093</p></td>
+<td><p>0.04555</p></td>
+<td><p>0.04772</p></td>
+<td><p>-0.84509</p></td>
+<td><p>0.42952</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-family: Karma, sans-serif;">
+<p>From this table, we can derive the following: the split on <code class="docutils literal notranslate"><span class="pre">revolving_utilization_of_unsecured_lines</span></code> is more important for this specific split because the event rate of this individual split is 4.5%, and the final leaf’s event rate is 12%. Comparing the second split on <code class="docutils literal notranslate"><span class="pre">account_never_delinq_percent</span></code>, we can see that its event rate is 23%, which is further away from the leaf’s event rate (12%).
+</span></p>
+</section>
+<section id="id1">
+<h3><span class="section-number">3.1.3. </span>Likelihood Ratio<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<span style="font-family: Karma, sans-serif;">
+Now we can calculate the likelihoods of individual split conditions, not in combination with each other.
+</span>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tree</p></th>
+<th class="head"><p>Node</p></th>
+<th class="head"><p>Feature</p></th>
+<th class="head"><p>Sign</p></th>
+<th class="head"><p>Split</p></th>
+<th class="head"><p>Count</p></th>
+<th class="head"><p>Events</p></th>
+<th class="head"><p>NonEvents</p></th>
+<th class="head"><p>EventRate</p></th>
+<th class="head"><p>WOE</p></th>
+<th class="head"><p>Odds</p></th>
+<th class="head"><p>Likelihood L(θ2∣x)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>account_never_delinq_percent</p></td>
+<td><p>&lt;</p></td>
+<td><p>98.0000</p></td>
+<td><p>2810</p></td>
+<td><p>674</p></td>
+<td><p>2136</p></td>
+<td><p>0.23986</p></td>
+<td><p>1.04376</p></td>
+<td><p>0.31554</p></td>
+<td><p>2.83989</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>revolving_utilization_of_unsecured_lines</p></td>
+<td><p>&lt;</p></td>
+<td><p>0.6093</p></td>
+<td><p>5225</p></td>
+<td><p>238</p></td>
+<td><p>4987</p></td>
+<td><p>0.04555</p></td>
+<td><p>-0.84509</p></td>
+<td><p>0.04772</p></td>
+<td><p>0.42952</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-family: Karma, sans-serif;">
+Likelihood calculated here compares the odds to the sample odds (odds of the average default rate, which is 10%).
+<p>The general idea is that if the likelihood of a split is similar to the likelihood of weight, we can consider these two splits to be more “related”. For example, if the leaf event rate is 1% and the split 1 event rate is 2% while split 2 event rate is 20%, we should consider split 1 to have higher importance.
+</span></p>
+<section id="comparing-likelihood-ratios">
+<h4><span class="section-number">3.1.3.1. </span>Comparing Likelihood Ratios<a class="headerlink" href="#comparing-likelihood-ratios" title="Permalink to this heading">#</a></h4>
+<span style="font-family: Karma, sans-serif;">
+From the table above, we can derive the following likelihood ratios:
+</span>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tree</p></th>
+<th class="head"><p>Node</p></th>
+<th class="head"><p>Feature</p></th>
+<th class="head"><p>Sign</p></th>
+<th class="head"><p>Split</p></th>
+<th class="head"><p>Likelihood L(θ1∣x)</p></th>
+<th class="head"><p>Likelihood L(θ2∣x)</p></th>
+<th class="head"><p>L(θ1∣x) / L(θ2∣x)</p></th>
+<th class="head"><p>Odds 1</p></th>
+<th class="head"><p>Odds 2</p></th>
+<th class="head"><p>Odds 1 / Odds 2</p></th>
+<th class="head"><p>WOE1</p></th>
+<th class="head"><p>WOE2</p></th>
+<th class="head"><p>WOE2 - WOE1</p></th>
+<th class="head"><p>e^(WOE1 - WOE2)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>account_never_delinq_percent</p></td>
+<td><p>&lt;</p></td>
+<td><p>98.0000</p></td>
+<td><p>1.25105</p></td>
+<td><p>2.83989</p></td>
+<td><p>0.44053</p></td>
+<td><p>0.13901</p></td>
+<td><p>0.31554</p></td>
+<td><p>0.44053</p></td>
+<td><p>0.224</p></td>
+<td><p>1.04376</p></td>
+<td><p>-0.81978</p></td>
+<td><p>0.44053</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>3</p></td>
+<td><p>revolving_utilization_of_unsecured_lines</p></td>
+<td><p>&lt;</p></td>
+<td><p>0.6093</p></td>
+<td><p>1.25105</p></td>
+<td><p>0.42952</p></td>
+<td><p>2.91269</p></td>
+<td><p>0.13901</p></td>
+<td><p>0.04772</p></td>
+<td><p>2.91269</p></td>
+<td><p>0.224</p></td>
+<td><p>-0.84509</p></td>
+<td><p>1.06908</p></td>
+<td><p>2.91269</p></td>
+</tr>
+</tbody>
+</table>
+<span style="font-family: Karma, sans-serif;">
+These likelihood ratios provide insights into the relative importance of each factor in a split, with respect to the final decision. 
+</span>
+</section>
+</section>
+</section>
+<section id="local-interpretability">
+<h2><span class="section-number">3.2. </span>Local Interpretability<a class="headerlink" href="#local-interpretability" title="Permalink to this heading">#</a></h2>
+<span style="font-family: Karma, sans-serif;">
+For local explanations (<code>explainer.plot_local_importance()</code>) for boosters with depth greater than one, we use an approach of calculating the likelihood of each split condition. performs the calculation of WOE for local explanations. For stumps, SHAP and xbooster local explanations are the same.
+<p><a class="reference external" href="https://github.com/xRiskLab/xBooster/blob/fc56c957975c17c42f973437cd86be331e881f7a/xbooster/explainer.py#L647">Link to the code where it is implemented</a>
+</span></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="introduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="parameters.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Parameters</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> 
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2. Methodology</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting-and-likelihood">3. Boosting and Likelihood</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretability">3.1. Global Interpretability</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-split-conditions">3.1.1. Interpreting Split Conditions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-ratio">3.1.2. Likelihood Ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1.3. Likelihood Ratio</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-likelihood-ratios">3.1.3.1. Comparing Likelihood Ratios</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-interpretability">3.2. Local Interpretability</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/methodology.md">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.14.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
