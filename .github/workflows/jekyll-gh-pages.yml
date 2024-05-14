@@ -28,7 +28,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install jupyter-book
+          pip install jupyter-book sphinx_inline_tabs
 
       - name: Build Jupyter Book
         run: |
