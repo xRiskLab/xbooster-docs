@@ -363,7 +363,8 @@ Explainable Boosted Scoring (xbooster)
 <a class="reference external" href="https://app.netlify.com/sites/xrisklab/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/47ff9d30-1958-413a-b7fe-ce64b25b3163/deploy-status" /></a></p>
 </div>
 <span style="font-family: Karma, sans-serif;">
-<p>If you like scorecards and gradient boosting, this repo is for you! This is the first attempt to productionize credit scoring models with gradient boosting. The xbooster library serves as an extension of XGBoost logistic regression tailored to the needs of model developers and validators.</p>
+<p>If you like scorecards and gradient boosting, this repo is for you! 🚀</p>
+<p>This library is designed for to productionizing credit scoring models with gradient boosting. The xbooster library serves as an extension of XGBoost logistic regression tailored to the needs of model developers and validators.</p>
 <p>What problems does xbooster help you solve?</p>
 <ol class="arabic simple">
 <li><p>Boost model accuracy ratio: Gain better predictive performance during model development.</p></li>
@@ -375,17 +376,24 @@ Explainable Boosted Scoring (xbooster)
 <section class="tex2jax_ignore mathjax_ignore" id="scorecard-boosting">
 <h1>Scorecard Boosting 🚀<a class="headerlink" href="#scorecard-boosting" title="Permalink to this heading">#</a></h1>
 <p>Scorecard boosting is an innovative methodology for constructing credit scorecards by leveraging advanced machine learning (ML) techniques, specifically gradient boosting, that <a class="reference external" href="https://blogs.nvidia.com/blog/ai-credit-risk-scotiabank/">emerged in the domain of Credit Risk</a>.</p>
+<p>The benefits of boosted scorecards include:</p>
+<ol class="arabic simple">
+<li><p><strong>Predictive Power</strong>: Boosted scorecards can outperform traditional scorecards in terms of predictive power.</p></li>
+<li><p><strong>Flexibility</strong>: Because boosted models are non-linear, they can capture complex relationships between features.</p></li>
+</ol>
+<p>Given that boosted logistic models can deliver between 1-5% improvement in accuracy compared to traditional scorecards, the benefits can amount to millions of dollars in savings for financial institutions.</p>
+<p>The following sections provide an overview of gradient boosting, the core algorithm behind scorecard boosting, and how it can be used to build boosted scorecards.</p>
 <section id="gradient-boosting">
-<h2>Gradient Boosting 📈<a class="headerlink" href="#gradient-boosting" title="Permalink to this heading">#</a></h2>
+<h2>Gradient Boosting 🌳<a class="headerlink" href="#gradient-boosting" title="Permalink to this heading">#</a></h2>
 <p><img alt="Image" src="_images/learning_curve.gif" /></p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_boosting">Gradient boosting</a>, which lies at the 💚 of scorecard boosting, is an ML technique that builds a predictive model by combining the outputs of multiple “weak” models, typically decision trees, to create a strong predictive model.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_boosting">Gradient boosting</a>, which lies at the 💚 of scorecard boosting, is a machine learning technique that builds a predictive model by combining the outputs of multiple “weak” models, typically decision trees, to create a strong predictive model.</p>
 <p>The algorithm works sequentially, with each new model focusing on correcting errors made by the previous ones. It minimizes a loss function by adding new models to the ensemble, and the final prediction is the sum of the predictions from all models.</p>
 <p>One of the most known frameworks for gradient boosting with decision trees is <a class="reference external" href="https://web.njit.edu/~usman/courses/cs675_fall16/BoostedTree.pdf">XGBoost</a>. XGBoost is an optimized distributed gradient boosting library designed to be highly efficient, flexible, and portable.</p>
 <p>For binary classification tasks like credit scoring, XGBoost performs a form of Logistic Regression. The algorithm is trained to minimize the <a class="reference external" href="https://en.wikipedia.org/wiki/Cross_entropy#Cross-entropy_loss_function_and_logistic_regression">log loss</a> function, which is the negative log-likelihood of the true labels given a probabilistic model.</p>
 <p>The algorithm used in XGBoost Logistic Regression <a class="reference external" href="https://en.wikipedia.org/wiki/XGBoost">follows</a> the Newton-Raphson update method, which was initially described by <a class="reference external" href="https://projecteuclid.org/journals/annals-of-statistics/volume-29/issue-5/Greedy-function-approximation-A-gradient-boosting-machine/10.1214/aos/1013203451.full">J. Friedman (2001)</a>. XGBoost Logistic Regression also has ties to LogitBoost, which was described by <a class="reference external" href="https://projecteuclid.org/journals/annals-of-statistics/volume-28/issue-2/Additive-logistic-regression--a-statistical-view-of-boosting-With/10.1214/aos/1016218223.full#:~:text=Boosting%20works%20by%20sequentially%20applying,in%20dramatic%20improvements%20in%20performance">J. Friedman et al. (2000)</a>.</p>
 <p>To familiarize yourself further with gradient boosting and XGBoost follow the links below:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://explained.ai/gradient-boosting/">How to explain gradient boosting</a></p></li>
+<li><p><a class="reference external" href="https://explained.ai/gradient-boosting/">How to Explain Gradient Boosting</a></p></li>
 <li><p><a class="reference external" href="https://nicolas-hug.com/blog/gradient_boosting_descent">Understanding Gradient Boosting as a gradient descent</a></p></li>
 <li><p><a class="reference external" href="https://nicolas-hug.com/blog/around_gradient_boosting">Around Gradient Boosting: Classification, Missing Values, Second Order Derivatives, and Line Search</a></p></li>
 <li><p><a class="reference external" href="https://cengiz.me/posts/extreme-gradient-boosting/">How Does Extreme Gradient Boosting (XGBoost) Work?</a></p></li>
@@ -394,14 +402,14 @@ Explainable Boosted Scoring (xbooster)
 <section id="boosted-scorecards">
 <h2>Boosted Scorecards 💳<a class="headerlink" href="#boosted-scorecards" title="Permalink to this heading">#</a></h2>
 <p>Boosted scorecards built on top of gradient-boosted trees allow to improve performance metrics like Gini score and Kolmogorov-Smirnov (KS) statistic compared to standard tools, while maintaining the interpretability of traditional scorecards. 📊 This is achieved by combining the best of both worlds: the interpretability of scorecards and the predictive power of gradient boosting. 🌐</p>
-<p>A boosted scorecard can be seen as a collection of sequential decision trees transformed into a traditional scorecard format. 🌲 This scorecard comprises rules essential for computing a credit score, an evaluative measure of creditworthiness of new or existing customers. Typically ranging from 300 to 850, this score can be further customized using the Points to Double the Odds (PDO) technique, a concept extendable to gradient boosted decision trees.</p>
+<p>A boosted scorecard can be seen as a collection of sequential decision trees transformed into a traditional scorecard format. 🌳 This scorecard comprises rules essential for computing a credit score, an evaluative measure of creditworthiness of new or existing customers. Typically ranging from 300 to 850, this score can be further customized using the Points to Double the Odds (PDO) technique, a concept extendable to gradient boosted decision trees.</p>
 <p>Below we can see how the number of boosting iterations affects the distribution of boosted credit scores among good and bad customers:</p>
 <p><img alt="Image" src="_images/score_distribution_animation_estimators.gif" /></p>
 </section>
 <section id="useful-resources">
 <h2>Useful resources 📖<a class="headerlink" href="#useful-resources" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/deburky/boosting-scorecards">Scorecard boosting repo: notebooks and other supplementary materials</a></p></li>
+<li><p><a class="reference external" href="https://github.com/deburky/boosting-scorecards">Scorecard Boosting Repo: Notebooks and other Supplementary Materials</a></p></li>
 <li><p><a class="reference external" href="https://github.com/pedwardsada/real_adaboost/blob/master/real_adaboost.pptx.pdf">Boosting for Credit Scorecards and Similarity to WOE Logistic Regression</a></p></li>
 <li><p><a class="reference external" href="https://www.nvidia.com/ko-kr/on-demand/session/gtcspring21-s31327/">Machine Learning in Retail Credit Risk: Algorithms, Infrastructure, and Alternative Data — Past, Present, and Future</a></p></li>
 <li><p><a class="reference external" href="https://github.com/rapidsai-community/showcase/tree/main/event_notebooks/GTC_2021/credit_scorecard">Building Credit Risk Scorecards with RAPIDS</a></p></li>
@@ -467,7 +475,7 @@ Explainable Boosted Scoring (xbooster)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">Gradient Boosting 📈</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-boosting">Gradient Boosting 🌳</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boosted-scorecards">Boosted Scorecards 💳</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-resources">Useful resources 📖</a></li>
 </ul>

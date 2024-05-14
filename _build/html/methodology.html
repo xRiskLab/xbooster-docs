@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'methodology';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. Parameters" href="parameters.html" />
+    <link rel="next" title="3. Parameters" href="parameters.html" />
     <link rel="prev" title="1. Introduction" href="introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -383,42 +383,56 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="methodology">
 <h1><span class="section-number">2. </span>Methodology<a class="headerlink" href="#methodology" title="Permalink to this heading">#</a></h1>
+<p>This section documents the methodology behind the xbooster library, which is designed to build credit scorecards with XGBoost. The library extends the scorecard boosting methodology with the inclusion of Weight of Evidence (WOE) as another method for building credit scorecards with XGBoost.</p>
+<p><img alt="Image" src="_images/score_distribution.png" /></p>
+<section id="introduction">
+<h2><span class="section-number">2.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <span style="font-family: Karma, sans-serif;">
 <p>In recent years, gradient boosting algorithms have revolutionized machine learning with their exceptional performance. However, understanding their inner workings and interpretability has often been challenging.</p>
+<p><img alt="Image" src="_images/gradient_boosting.png" /></p>
 <p>The methodology for scorecard boosting, pioneered by Paul Edwards, addresses this gap. xbooster library builds upon this methodology, extending it with the inclusion of Weight of Evidence (WOE) as another method for building credit scorecards with XGBoost.</p>
-<p>The underlying framework of xbooster is likelihood-based. This framework enables to build and validate boosted scoring systems, quantify feature importance, and perform model validation effectively.</p>
+<p>The underlying framework of xbooster is based on likelihood theory. This framework enables to build and validate boosted scoring systems, quantify feature importance, and perform model validation effectively using a well-known suite of credit scoring metrics.</p>
 <p>Boosting iterations by XGBoost produce margins (log-odds), which can be interpreted as likelihood ratios relative to the base score. By treating these margins as likelihoods, xbooster conceptualizes the boosting process as an iterative procedure aimed at maximizing the likelihood of the observed data (Maximum Likelihood Estimation or MLE).</p>
-<details><summary class="summary-box"><b>Important terminology</b><br></summary>
-  <br>
-  <p>
-  <b>Weight of Evidence (WOE)</b>: calculates the log-odds of the event rate in a specific group relative to the event rate in the entire dataset. WOE in the context of gradient boosting is a (log) likelihood ratio that measures deviations from the average event rate in a given tree. WOE is defined as p("bad") / p("good") to match the direction of leaf weights (XAddEvidence) and WOE in this library.
-  <br>
-  </p>
-  <p>
-  <b>Information Value (IV)</b>: Shannon Information Value (IV).<br>
-  </p>
-  <p>
-  <b>Leaf weights (XAddEvidence)</b>: gradient boosting margins, which can be interpreted as likelihood ratios.<br>
-  </p>
-  <p>
-  <b>Points</b>: calculates credit scorecard points based on the XAddEvidence or WOE and the PDO (Points to Double the Odds) method.<br>
-  </p>
-  <b>Likelihood</b>: the exponent of WOE. When visualizing metrics for interpretability, we have an option to normalize to 1.<br>
-  </p>
+<p><img alt="Image" src="_images/additive_logistic_regression.png" /></p>
+<details>
+  <summary class="summary-box"><b>Important terminology</b><br> Explore the metrics used in the xbooster library.</summary>
+  <p><b>Weight of Evidence (WOE)</b>: calculates the log-odds of the event rate in a specific group relative to the event rate in the entire dataset. WOE in the context of gradient boosting is a (log) likelihood ratio that measures deviations from the average event rate in a given tree. WOE is defined as p("bad") / p("good") to match the direction of leaf weights (XAddEvidence) and WOE in this library.</p>
+  <p><b>Information Value (IV)</b>: Shannon Information Value (IV).</p>
+  <p><b>Leaf weights (XAddEvidence)</b>: gradient boosting margins, which can be interpreted as likelihood ratios.</p>
+  <p><b>Points</b>: calculates credit scorecard points based on the XAddEvidence or WOE and the PDO (Points to Double the Odds) method.</p>
+  <p><b>Likelihood</b>: the exponent of WOE. When visualizing metrics for interpretability, we have an option to normalize to 1.</p>
 </details>
 </span>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="boosting-and-likelihood">
-<h1><span class="section-number">3. </span>Boosting and Likelihood<a class="headerlink" href="#boosting-and-likelihood" title="Permalink to this heading">#</a></h1>
+<section id="boosting-and-likelihood">
+<h2><span class="section-number">2.2. </span>Boosting and Likelihood<a class="headerlink" href="#boosting-and-likelihood" title="Permalink to this heading">#</a></h2>
+<p>This section provides an overview of the xbooster’s interpretability functionality for trees with depth larger than one.</p>
 <section id="global-interpretability">
-<h2><span class="section-number">3.1. </span>Global Interpretability<a class="headerlink" href="#global-interpretability" title="Permalink to this heading">#</a></h2>
+<h3><span class="section-number">2.2.1. </span>Global Interpretability<a class="headerlink" href="#global-interpretability" title="Permalink to this heading">#</a></h3>
+<p>The snippet below demonstrates how to plot global feature importance using the xbooster library.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xbooster.explainer</span> <span class="kn">import</span> <span class="n">plot_importance</span>
+
+<span class="n">plot_importance</span><span class="p">(</span>
+    <span class="n">scorecard_constructor</span><span class="p">,</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;IV&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s2">&quot;global&quot;</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#a7fe01&quot;</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;#1e1e1e&quot;</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Feature importance&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Image" src="_images/global_importance.png" /></p>
 <span style="font-family: Karma, sans-serif;">
 <p>We can view an ensemble of gradient boosted trees as a summation of margins, leaf log-odds which are scaled by the learning rate. Each boosting iteration produces a margin, which can be interpreted as a likelihood vis-a-vis the base score (intercept). At each iteration, the boosting machine updates its previous likelihood by fitting a new decision tree to update the previous margin. As such, the boosting ensemble produces a series of likelihoods, which are eventually summed to obtain the final prediction.</p>
 <p>It is important to note the difference between a tree depth of 1 (stump) and larger depths. We can use a <code class="docutils literal notranslate"><span class="pre">global</span></code> method from <code class="docutils literal notranslate"><span class="pre">explainer.plot_importance()</span></code> only for stumps. For larger trees, we need to recreate individual splits and measure feature importance via a likelihood ratio.</p>
 <p>What follows is a description of the approach to global feature importance for models with depth greater than one.</p>
 </span>
 <section id="interpreting-split-conditions">
-<h3><span class="section-number">3.1.1. </span>Interpreting Split Conditions<a class="headerlink" href="#interpreting-split-conditions" title="Permalink to this heading">#</a></h3>
+<h4><span class="section-number">2.2.1.1. </span>Interpreting Split Conditions<a class="headerlink" href="#interpreting-split-conditions" title="Permalink to this heading">#</a></h4>
 <span style="font-family: Karma, sans-serif;">
 <p>By examining how samples traverse through the trees and end up in specific leaf nodes, we can evaluate the impact of different feature combinations and their likelihood ratios on the model’s predictions.</p>
 <p>Consider a split in one of the gradient boosting trees:</p>
@@ -470,10 +484,10 @@ document.write(`
 </span></p>
 </section>
 <section id="likelihood-ratio">
-<h3><span class="section-number">3.1.2. </span>Likelihood Ratio<a class="headerlink" href="#likelihood-ratio" title="Permalink to this heading">#</a></h3>
+<h4><span class="section-number">2.2.1.2. </span>Likelihood Ratio<a class="headerlink" href="#likelihood-ratio" title="Permalink to this heading">#</a></h4>
 <span style="font-family: Karma, sans-serif;">
 <p>For models with depth greater than one, to measure the relative importance of each factor in a split, we can use a likelihood ratio, where one likelihood is associated with the terminal node, and another one measures the likelihood of an individual split condition within a branch.</p>
-<p><a class="reference external" href="https://github.com/xRiskLab/xBooster/blob/fc56c957975c17c42f973437cd86be331e881f7a/xbooster/explainer.py#L286">Link to the code where it is implemented</a></p>
+<p><a class="reference external" href="https://github.com/xRiskLab/xBooster/blob/fc56c957975c17c42f973437cd86be331e881f7a/xbooster/explainer.py#L286">💻 Link to the code where it is implemented</a></p>
 <p>Consider the following likelihoods from individual splits:</p>
 </span>
 <table class="table">
@@ -513,14 +527,9 @@ document.write(`
 </tbody>
 </table>
 <span style="font-family: Karma, sans-serif;">
-<p>From this table, we can derive the following: the split on <code class="docutils literal notranslate"><span class="pre">revolving_utilization_of_unsecured_lines</span></code> is more important for this specific split because the event rate of this individual split is 4.5%, and the final leaf’s event rate is 12%. Comparing the second split on <code class="docutils literal notranslate"><span class="pre">account_never_delinq_percent</span></code>, we can see that its event rate is 23%, which is further away from the leaf’s event rate (12%).
+<p>From this table, we can derive the following: the split on <code class="docutils literal notranslate"><span class="pre">revolving_utilization_of_unsecured_lines</span></code> is more important for this specific split because the event rate of this individual split is 4.5%, and the final leaf’s event rate is 12%. Comparing the second split on <code class="docutils literal notranslate"><span class="pre">account_never_delinq_percent</span></code>, we can see that its event rate is 23%, which is further away from the leaf’s event rate (12%).</p>
+<p>Now we can calculate the likelihoods of individual split conditions, not in combination with each other.
 </span></p>
-</section>
-<section id="id1">
-<h3><span class="section-number">3.1.3. </span>Likelihood Ratio<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<span style="font-family: Karma, sans-serif;">
-Now we can calculate the likelihoods of individual split conditions, not in combination with each other.
-</span>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Tree</p></th>
@@ -570,8 +579,9 @@ Now we can calculate the likelihoods of individual split conditions, not in comb
 Likelihood calculated here compares the odds to the sample odds (odds of the average default rate, which is 10%).
 <p>The general idea is that if the likelihood of a split is similar to the likelihood of weight, we can consider these two splits to be more “related”. For example, if the leaf event rate is 1% and the split 1 event rate is 2% while split 2 event rate is 20%, we should consider split 1 to have higher importance.
 </span></p>
-<section id="comparing-likelihood-ratios">
-<h4><span class="section-number">3.1.3.1. </span>Comparing Likelihood Ratios<a class="headerlink" href="#comparing-likelihood-ratios" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="comparing-likelihoods">
+<h4><span class="section-number">2.2.1.3. </span>Comparing Likelihoods<a class="headerlink" href="#comparing-likelihoods" title="Permalink to this heading">#</a></h4>
 <span style="font-family: Karma, sans-serif;">
 From the table above, we can derive the following likelihood ratios:
 </span>
@@ -636,10 +646,28 @@ These likelihood ratios provide insights into the relative importance of each fa
 </section>
 </section>
 <section id="local-interpretability">
-<h2><span class="section-number">3.2. </span>Local Interpretability<a class="headerlink" href="#local-interpretability" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.3. </span>Local Interpretability<a class="headerlink" href="#local-interpretability" title="Permalink to this heading">#</a></h2>
 <span style="font-family: Karma, sans-serif;">
-For local explanations (<code>explainer.plot_local_importance()</code>) for boosters with depth greater than one, we use an approach of calculating the likelihood of each split condition. performs the calculation of WOE for local explanations. For stumps, SHAP and xbooster local explanations are the same.
-<p><a class="reference external" href="https://github.com/xRiskLab/xBooster/blob/fc56c957975c17c42f973437cd86be331e881f7a/xbooster/explainer.py#L647">Link to the code where it is implemented</a>
+<p>The snippet below demonstrates how to plot local feature importance using the xbooster library.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xbooster</span> <span class="kn">import</span> <span class="n">explainer</span>
+
+<span class="c1"># Choose a sample</span>
+<span class="n">sample_idx</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">explainer</span><span class="o">.</span><span class="n">plot_local_importance</span><span class="p">(</span>
+    <span class="n">scorecard_constructor</span><span class="p">,</span>
+    <span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ix_test</span><span class="p">][</span><span class="n">sample_idx</span> <span class="p">:</span> <span class="n">sample_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Local feature importance&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Image" src="_images/local_importance.png" /></p>
+<p>For local explanations for boosters with depth greater than one, we use an approach of calculating the importance of each split condition.</p>
+<p>To provide local explanations, we perform the calculation of WOE for individual splits and use WOE as a metric that measures deviations from the average. For stumps, SHAP and xbooster local explanations are the same, since SHAP uses XGBoost’s log-odds to calculate the importance of each feature.</p>
+<p><a class="reference external" href="https://github.com/xRiskLab/xBooster/blob/fc56c957975c17c42f973437cd86be331e881f7a/xbooster/explainer.py#L647">💻 Link to the code where it is implemented</a>
 </span></p>
 </section>
 </section>
@@ -687,7 +715,7 @@ For local explanations (<code>explainer.plot_local_importance()</code>) for boos
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Parameters</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Parameters</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -706,22 +734,18 @@ For local explanations (<code>explainer.plot_local_importance()</code>) for boos
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2. Methodology</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting-and-likelihood">3. Boosting and Likelihood</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretability">3.1. Global Interpretability</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-split-conditions">3.1.1. Interpreting Split Conditions</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-ratio">3.1.2. Likelihood Ratio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1.3. Likelihood Ratio</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-likelihood-ratios">3.1.3.1. Comparing Likelihood Ratios</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">2.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boosting-and-likelihood">2.2. Boosting and Likelihood</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#global-interpretability">2.2.1. Global Interpretability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-split-conditions">2.2.1.1. Interpreting Split Conditions</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-ratio">2.2.1.2. Likelihood Ratio</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-likelihoods">2.2.1.3. Comparing Likelihoods</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-interpretability">3.2. Local Interpretability</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-interpretability">2.3. Local Interpretability</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
   <div class="sidebar-secondary-item">

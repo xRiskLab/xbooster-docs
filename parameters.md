@@ -2,7 +2,7 @@
 
 <span style="font-family: Karma, sans-serif;">
 
-This section describes the parameters and methods available in the `xbooster` library.
+This section describes the parameters and methods available in the xbooster library.
 
 </span>
 
@@ -12,7 +12,7 @@ This section describes the parameters and methods available in the `xbooster` li
 
 <span style="font-family: Karma, sans-serif;">
 
-A class for generating a scorecard from a trained XGBoost model. The methodology is inspired by the NVIDIA GTC Talk "Machine Learning in Retail Credit Risk" by Paul Edwards.
+A class for generating a scorecard from a trained XGBoost model.
 
 </span>
 

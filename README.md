@@ -12,7 +12,9 @@ Explainable Boosted Scoring (xbooster)
 
 <span style="font-family: Karma, sans-serif;">
 
-If you like scorecards and gradient boosting, this repo is for you! This is the first attempt to productionize credit scoring models with gradient boosting. The xbooster library serves as an extension of XGBoost logistic regression tailored to the needs of model developers and validators.
+If you like scorecards and gradient boosting, this repo is for you! 🚀
+
+This library is designed for to productionizing credit scoring models with gradient boosting. The xbooster library serves as an extension of XGBoost logistic regression tailored to the needs of model developers and validators.
 
 What problems does xbooster help you solve?
 
@@ -28,11 +30,20 @@ Install with `pip install xbooster` ⭐
 
 Scorecard boosting is an innovative methodology for constructing credit scorecards by leveraging advanced machine learning (ML) techniques, specifically gradient boosting, that [emerged in the domain of Credit Risk](https://blogs.nvidia.com/blog/ai-credit-risk-scotiabank/).
 
-## Gradient Boosting 📈
+The benefits of boosted scorecards include:
+
+1. **Predictive Power**: Boosted scorecards can outperform traditional scorecards in terms of predictive power.
+2. **Flexibility**: Because boosted models are non-linear, they can capture complex relationships between features.
+
+Given that boosted logistic models can deliver between 1-5% improvement in accuracy compared to traditional scorecards, the benefits can amount to millions of dollars in savings for financial institutions.
+
+The following sections provide an overview of gradient boosting, the core algorithm behind scorecard boosting, and how it can be used to build boosted scorecards.
+
+## Gradient Boosting 🌳
 
 ![Image](./learning_curve.gif)
 
-[Gradient boosting](https://en.wikipedia.org/wiki/Gradient_boosting), which lies at the 💚 of scorecard boosting, is an ML technique that builds a predictive model by combining the outputs of multiple "weak" models, typically decision trees, to create a strong predictive model. 
+[Gradient boosting](https://en.wikipedia.org/wiki/Gradient_boosting), which lies at the 💚 of scorecard boosting, is a machine learning technique that builds a predictive model by combining the outputs of multiple "weak" models, typically decision trees, to create a strong predictive model. 
 
 The algorithm works sequentially, with each new model focusing on correcting errors made by the previous ones. It minimizes a loss function by adding new models to the ensemble, and the final prediction is the sum of the predictions from all models.
 
@@ -43,7 +54,8 @@ For binary classification tasks like credit scoring, XGBoost performs a form of 
 The algorithm used in XGBoost Logistic Regression [follows](https://en.wikipedia.org/wiki/XGBoost) the Newton-Raphson update method, which was initially described by [J. Friedman (2001)](https://projecteuclid.org/journals/annals-of-statistics/volume-29/issue-5/Greedy-function-approximation-A-gradient-boosting-machine/10.1214/aos/1013203451.full). XGBoost Logistic Regression also has ties to LogitBoost, which was described by [J. Friedman et al. (2000)](https://projecteuclid.org/journals/annals-of-statistics/volume-28/issue-2/Additive-logistic-regression--a-statistical-view-of-boosting-With/10.1214/aos/1016218223.full#:~:text=Boosting%20works%20by%20sequentially%20applying,in%20dramatic%20improvements%20in%20performance).
 
 To familiarize yourself further with gradient boosting and XGBoost follow the links below:
-* [How to explain gradient boosting](https://explained.ai/gradient-boosting/)
+
+* [How to Explain Gradient Boosting](https://explained.ai/gradient-boosting/)
 * [Understanding Gradient Boosting as a gradient descent](https://nicolas-hug.com/blog/gradient_boosting_descent)
 * [Around Gradient Boosting: Classification, Missing Values, Second Order Derivatives, and Line Search](https://nicolas-hug.com/blog/around_gradient_boosting)
 * [How Does Extreme Gradient Boosting (XGBoost) Work?](https://cengiz.me/posts/extreme-gradient-boosting/)
@@ -52,7 +64,7 @@ To familiarize yourself further with gradient boosting and XGBoost follow the li
 
 Boosted scorecards built on top of gradient-boosted trees allow to improve performance metrics like Gini score and Kolmogorov-Smirnov (KS) statistic compared to standard tools, while maintaining the interpretability of traditional scorecards. 📊 This is achieved by combining the best of both worlds: the interpretability of scorecards and the predictive power of gradient boosting. 🌐
 
-A boosted scorecard can be seen as a collection of sequential decision trees transformed into a traditional scorecard format. 🌲 This scorecard comprises rules essential for computing a credit score, an evaluative measure of creditworthiness of new or existing customers. Typically ranging from 300 to 850, this score can be further customized using the Points to Double the Odds (PDO) technique, a concept extendable to gradient boosted decision trees.
+A boosted scorecard can be seen as a collection of sequential decision trees transformed into a traditional scorecard format. 🌳 This scorecard comprises rules essential for computing a credit score, an evaluative measure of creditworthiness of new or existing customers. Typically ranging from 300 to 850, this score can be further customized using the Points to Double the Odds (PDO) technique, a concept extendable to gradient boosted decision trees.
 
 Below we can see how the number of boosting iterations affects the distribution of boosted credit scores among good and bad customers:
 
@@ -60,7 +72,7 @@ Below we can see how the number of boosting iterations affects the distribution 
 
 ## Useful resources 📖
 
-- [Scorecard boosting repo: notebooks and other supplementary materials](https://github.com/deburky/boosting-scorecards)
+- [Scorecard Boosting Repo: Notebooks and other Supplementary Materials](https://github.com/deburky/boosting-scorecards)
 - [Boosting for Credit Scorecards and Similarity to WOE Logistic Regression](https://github.com/pedwardsada/real_adaboost/blob/master/real_adaboost.pptx.pdf)
 - [Machine Learning in Retail Credit Risk: Algorithms, Infrastructure, and Alternative Data — Past, Present, and Future](https://www.nvidia.com/ko-kr/on-demand/session/gtcspring21-s31327/)
 - [Building Credit Risk Scorecards with RAPIDS](https://github.com/rapidsai-community/showcase/tree/main/event_notebooks/GTC_2021/credit_scorecard)
