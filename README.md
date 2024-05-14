@@ -48,7 +48,7 @@ To familiarize yourself further with gradient boosting and XGBoost follow the li
 * [Around Gradient Boosting: Classification, Missing Values, Second Order Derivatives, and Line Search](https://nicolas-hug.com/blog/around_gradient_boosting)
 * [How Does Extreme Gradient Boosting (XGBoost) Work?](https://cengiz.me/posts/extreme-gradient-boosting/)
 
-## Bosted scorecards 💳
+## Boosted Scorecards 💳
 
 Boosted scorecards built on top of gradient-boosted trees allow to improve performance metrics like Gini score and Kolmogorov-Smirnov (KS) statistic compared to standard tools, while maintaining the interpretability of traditional scorecards. 📊 This is achieved by combining the best of both worlds: the interpretability of scorecards and the predictive power of gradient boosting. 🌐
 
@@ -59,7 +59,6 @@ Below we can see how the number of boosting iterations affects the distribution 
 ![Image](./score_distribution_animation_estimators.gif)
 
 ## Useful resources 📖
-
 
 - [Scorecard boosting repo: notebooks and other supplementary materials](https://github.com/deburky/boosting-scorecards)
 - [Boosting for Credit Scorecards and Similarity to WOE Logistic Regression](https://github.com/pedwardsada/real_adaboost/blob/master/real_adaboost.pptx.pdf)
