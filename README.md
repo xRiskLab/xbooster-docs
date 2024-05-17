@@ -14,7 +14,7 @@ Explainable Boosted Scoring (xbooster)
 
 If you like scorecards and gradient boosting, this repo is for you! 🚀
 
-This library is designed for to productionizing credit scoring models with gradient boosting. The xbooster library serves as an extension of XGBoost logistic regression tailored to the needs of model developers and validators.
+This library is designed for productionizing credit scoring models with gradient boosting. The xbooster library serves as an extension of XGBoost logistic regression tailored to the needs of model developers and validators.
 
 What problems does xbooster help you solve?
 
